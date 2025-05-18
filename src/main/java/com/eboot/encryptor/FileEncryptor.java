@@ -5,9 +5,11 @@ import javax.crypto.CipherInputStream;
 import javax.crypto.CipherOutputStream;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
 import java.security.MessageDigest;
 import java.util.Arrays;
 
@@ -15,49 +17,33 @@ public class FileEncryptor {
 
     private static SecretKey getKeyFromPassword(String password) throws Exception{
         byte[] key = password.getBytes(StandardCharsets.UTF_8);
-
         MessageDigest sha = MessageDigest.getInstance("SHA-256");
         key = sha.digest(key);
-
         return new SecretKeySpec(Arrays.copyOf(key,16),"AES");
     }
 
 
-    public static void encrypt(String inputFile, String outputFile, String password) throws Exception{
-        SecretKey secretKey = getKeyFromPassword(password);
-        Cipher cipher = Cipher.getInstance("AES");
-        cipher.init(Cipher.ENCRYPT_MODE,secretKey);
+    public void encrypt(String inputPath, String outputPath, String password) throws Exception{
+        SecretKey key = getKeyFromPassword(password);
 
-        try(FileInputStream fis = new FileInputStream(inputFile);
-            FileOutputStream fos = new FileOutputStream(outputFile);
-            CipherOutputStream cos = new CipherOutputStream(fos,cipher)
-        ){
-            byte[] buffer = new byte[4096];
-            int read;
-            while((read = fis.read(buffer)) != -1) {
-                cos.write(buffer, 0, read);
-            }
-        }
-        System.out.println("File encrypted successfully");
+        byte[] fileBytes = Files.readAllBytes(new File(inputPath).toPath());
+        Cipher cipher = Cipher.getInstance("AES");
+        cipher.init(Cipher.ENCRYPT_MODE,key);
+        byte[] encryptedBytes = cipher.doFinal(fileBytes);
+
+        Files.write(new File(outputPath).toPath(), encryptedBytes);
     }
 
 
-    public static void decrypt(String inputFile, String outputFile, String password) throws Exception{
-        SecretKey secretKey = getKeyFromPassword(password);
+    public void decrypt(String inputFile, String outputFile, String password) throws Exception{
+        SecretKey key = getKeyFromPassword(password);
+
+        byte[] fileBytes = Files.readAllBytes(new File(inputFile).toPath());
         Cipher cipher = Cipher.getInstance("AES");
-        cipher.init(Cipher.DECRYPT_MODE,secretKey);
+        cipher.init(Cipher.DECRYPT_MODE, key);
+        byte[] decryptedBytes = cipher.doFinal(fileBytes);
 
-        try(FileInputStream fis = new FileInputStream(inputFile);
-            FileOutputStream fos = new FileOutputStream(outputFile);
-            CipherInputStream cis = new CipherInputStream(fis,cipher)){
-
-            byte[] buffer = new byte[4096];
-            int read;
-            while ((read = cis.read(buffer)) != -1){
-                fos.write(buffer,0,read);
-            }
-        }
-         System.out.println("File decrypted successfully");
+        Files.write(new File(outputFile).toPath(), decryptedBytes);
     }
 
 }
