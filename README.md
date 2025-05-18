@@ -12,10 +12,11 @@ A simple Java CLI tool to encrypt and decrypt files using AES encryption and a p
 
 ## ✅ To-Do
 
-- Add file type validation
-- Support drag-and-drop file paths (GUI?)
-- Switch from CLI to GUI (JavaFX or Swing)
-- Add stronger password validation and feedback
-- Option to overwrite files or auto-rename
-- Add SHA-256 hash check for file integrity
-- Add a logging system (optional)
+- [x] Encrypt and decrypt files via CLI
+- [x] Prompt for password (and confirmation)
+- [x] Modularize argument parsing
+- [x] Use `java.nio.file.Path` for safety
+- [ ] Improve key derivation with PBKDF2 and salt
+- [ ] Add ability to encrypt directories (ZIP support)
+- [ ] Add unit tests for `CommandHandler` and `ArgumentParser`
+- [ ] Improve CLI output with colors

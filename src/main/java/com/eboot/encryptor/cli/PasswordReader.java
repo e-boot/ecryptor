@@ -1,4 +1,4 @@
-package com.eboot.encryptor;
+package com.eboot.encryptor.cli;
 
 import java.io.Console;
 import java.util.Scanner;

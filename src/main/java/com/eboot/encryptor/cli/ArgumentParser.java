@@ -1,5 +1,7 @@
-package com.eboot.encryptor;
+package com.eboot.encryptor.cli;
 
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -26,11 +28,11 @@ public class ArgumentParser {
         return mode;
     }
 
-    public String getInputPath(){
-        return flags.get("-in");
+    public Path getInputPath(){
+        return Paths.get(flags.get("-in")).toAbsolutePath().normalize();
     }
 
-    public String getOutputPath(){
-        return  flags.get("-out");
+    public Path getOutputPath(){
+        return  Paths.get(flags.get("-out")).toAbsolutePath().normalize();
     }
 }

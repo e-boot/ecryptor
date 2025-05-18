@@ -1,7 +1,8 @@
-package com.eboot.encryptor;
+package com.eboot.encryptor.cli;
 
-import java.io.Console;
-import java.util.Scanner;
+import com.eboot.encryptor.core.CommandHandler;
+
+import java.nio.file.Path;
 
 public class Main {
     public static void main(String[] args) {
@@ -10,8 +11,8 @@ public class Main {
         try {
             ArgumentParser parser = new ArgumentParser(args);
             String mode = parser.getMode();
-            String inputPath = parser.getInputPath();
-            String outputPath = parser.getOutputPath();
+            Path inputPath = parser.getInputPath();
+            Path outputPath = parser.getOutputPath();
 
             CommandHandler handler = new CommandHandler();
 
@@ -30,7 +31,7 @@ public class Main {
                     break;
 
                 default:
-                    System.out.println("Unkown mode: " + mode);
+                    System.out.println("Unknown mode: " + mode);
                     showHelp();
             }
 

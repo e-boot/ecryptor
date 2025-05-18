@@ -27,7 +27,7 @@
         <configuration>
           <archive>
             <manifest>
-              <mainClass>com.eboot.encryptor.Main</mainClass>
+              <mainClass>com.eboot.encryptor.cli.Main</mainClass>
             </manifest>
           </archive>
         </configuration>
