@@ -1,9 +1,15 @@
 package com.eboot.encryptor.cli;
 
 import com.eboot.encryptor.core.CommandHandler;
-
 import java.nio.file.Path;
 
+/**
+ * Entry point for the file encryption/decryption CLI application.
+ *
+ * Usage:
+ *   java -jar app.jar encrypt -in input.txt -out encrypted.txt
+ *   java -jar app.jar decrypt -in encrypted.txt -out decrypted.txt
+ */
 public class Main {
     public static void main(String[] args) {
 
@@ -43,12 +49,9 @@ public class Main {
     }
 
 
-
-
-
-
-
-
+    /**
+     * Prints help/usage instructions for the CLI.
+     */
     private static void showHelp() {
         System.out.println("Usage: java -jar app.jar <encrypt|decrypt> -in <input_file> -out <output_file>");
     }
