@@ -19,7 +19,7 @@ public class PasswordReader {
         Console console = System.console();
         if (console != null) {
             char[] pwd = console.readPassword(message);
-            return new String(pwd);
+            return new String(pwd).trim();
         } else {
             System.out.print(message);
             return new Scanner(System.in).nextLine();

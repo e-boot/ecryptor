@@ -23,8 +23,10 @@ public class ArgumentParser {
      * @throws IllegalArgumentException If the argument count is incorrect or a flag is missing a value.
      */
     public ArgumentParser(String[] args) throws  IllegalArgumentException{
+
     if(args.length < 1) {
         throw  new IllegalArgumentException("No arguments provided.");
+
     }
 
 
