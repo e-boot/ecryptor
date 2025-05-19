@@ -23,17 +23,27 @@ public class ArgumentParser {
      * @throws IllegalArgumentException If the argument count is incorrect or a flag is missing a value.
      */
     public ArgumentParser(String[] args) throws  IllegalArgumentException{
-    if(args.length != 5) {
-        throw  new IllegalArgumentException("Invalid argument count.");
+    if(args.length < 1) {
+        throw  new IllegalArgumentException("No arguments provided.");
     }
 
 
     this.mode = args[0].toLowerCase();
+    if((args.length -1 )% 2 != 0) {
+        throw new IllegalArgumentException("Flags and values must be in pairs");
+    }
+
     for(int i = 1; i < args.length; i +=2){
+        String flag = args[1];
         if(i + 1 >= args.length){
             throw  new IllegalArgumentException("Missing value for " + args[i]);
         }
-        flags.put(args[i], args[i +1]);
+        String value = args[i+1];
+        flags.put(flag,value);
+    }
+
+    if(!flags.containsKey("-in")){
+        throw new IllegalArgumentException("Missing required flag: -in <file>");
     }
 }
 
@@ -62,7 +72,11 @@ public class ArgumentParser {
      *
      * @return The output file path
      */
-    public Path getOutputPath(){
-        return  Paths.get(flags.get("-out")).toAbsolutePath().normalize();
+    public Path getOutputPath() {
+        String outPath = flags.get("-out");
+        if (outPath == null) {
+            return null;
+        }
+        return Paths.get(outPath).toAbsolutePath().normalize();
     }
 }
