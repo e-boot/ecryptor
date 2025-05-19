@@ -5,7 +5,6 @@ import java.nio.file.Path;
 
 /**
  * Entry point for the file encryption/decryption CLI application.
- *
  * Usage:
  *   java -jar app.jar encrypt -in input.txt -out encrypted.txt
  *   java -jar app.jar decrypt -in encrypted.txt -out decrypted.txt
@@ -18,7 +17,6 @@ public class Main {
             ArgumentParser parser = new ArgumentParser(args);
             String mode = parser.getMode();
             Path inputPath = parser.getInputPath();
-            Path outputPath = parser.getOutputPath();
 
             CommandHandler handler = new CommandHandler();
 
@@ -27,13 +25,13 @@ public class Main {
                 case "encrypt":
                     String password = PasswordReader.getConfirmedPassword();
                     if(password == null) return;
-                    handler.encryptFile(inputPath, outputPath, password);
+                    handler.encryptFile(inputPath, password);
                     System.out.println("Encryption complete.");
                     break;
 
                 case "decrypt":
                     String pwd = PasswordReader.prompt("Enter password: ");
-                    handler.decryptFile(inputPath, outputPath, pwd);
+                    handler.decryptFile(inputPath, pwd);
                     break;
 
                 default:

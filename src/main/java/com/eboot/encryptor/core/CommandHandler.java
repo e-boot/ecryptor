@@ -15,26 +15,23 @@ private final   FileEncryptor fileEncryptor = new FileEncryptor();
      * Encrypts a file using the provided password and saves the result to outputFile.
      *
      * @param inputFile  Path to the input file to encrypt.
-     * @param outputFile Path to the output encrypted file.
      * @param password   Password used to generate encryption key.
      * @throws Exception If encryption fails.
      */
-   public void encryptFile(Path inputFile, Path outputFile, String password) throws Exception{
-       fileEncryptor.encrypt(inputFile, outputFile, password);
-       System.out.println("File encrypted with success " + outputFile);
+   public void encryptFile(Path inputFile, String password) throws Exception{
+       fileEncryptor.encrypt(inputFile, password);
+       System.out.println("File encrypted with success.");
    }
 
     /**
      * Decrypts a file using the provided password and saves the result to outputFile.
-     *
-     * @param inputFile  Path to the encrypted input file.
-     * @param outputFile Path to the output decrypted file.
+     * @param encryptedFile  Path to the encrypted input file.
      * @param password   Password used to generate decryption key.
      * @throws Exception If decryption fails.
      */
-   public void decryptFile(Path inputFile, Path outputFile, String password) throws Exception{
-       fileEncryptor.decrypt(inputFile, outputFile, password);
-       System.out.println("File decrypted with success " + outputFile);
+   public void decryptFile(Path encryptedFile, String password) throws Exception{
+       fileEncryptor.decrypt(encryptedFile, password);
+       System.out.println("File decrypted with success ");
    }
 
 }
