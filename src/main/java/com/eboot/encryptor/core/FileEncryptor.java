@@ -2,7 +2,6 @@ package com.eboot.encryptor.core;
 
 import com.eboot.encryptor.utils.CryptoUtils;
 
-import javax.crypto.SecretKey;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
@@ -21,8 +20,7 @@ public class FileEncryptor {
      */
     public void encrypt(Path inputFile, Path outputFile, String password) throws Exception{
         byte[] fileBytes = Files.readAllBytes(inputFile);
-        SecretKey key = CryptoUtils.getKeyFromPassword(password);
-        byte[] encrypted = CryptoUtils.encrypt(fileBytes,key);
+        byte[] encrypted = CryptoUtils.encrypt(fileBytes, password);
         Files.write(outputFile ,encrypted);
     }
 
@@ -36,8 +34,7 @@ public class FileEncryptor {
      */
     public void decrypt(Path inputFile, Path outputFile, String password) throws Exception{
       byte[] fileBytes = Files.readAllBytes(inputFile);
-      SecretKey key = CryptoUtils.getKeyFromPassword(password);
-      byte[] decrypted = CryptoUtils.decrypt(fileBytes, key);
+      byte[] decrypted = CryptoUtils.decrypt(fileBytes, password);
       Files.write(outputFile, decrypted);
     }
 
