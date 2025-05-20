@@ -3,7 +3,7 @@ package com.eboot.encryptor.utils;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
-public class FileIOUtils {
+public class FileHelper {
 
     public static byte[] readBytes(Path path) throws Exception {
         return Files.readAllBytes(path);

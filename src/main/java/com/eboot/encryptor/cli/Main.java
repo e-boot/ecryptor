@@ -1,6 +1,6 @@
 package com.eboot.encryptor.cli;
 
-import com.eboot.encryptor.core.CommandHandler;
+import com.eboot.encryptor.service.CommandHandler;
 import java.nio.file.Path;
 
 /**

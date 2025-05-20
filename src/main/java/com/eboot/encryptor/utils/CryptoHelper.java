@@ -5,14 +5,12 @@ import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.PBEKeySpec;
 import javax.crypto.spec.SecretKeySpec;
 import java.nio.ByteBuffer;
-import java.nio.charset.StandardCharsets;
 import java.security.*;
-import java.util.Base64;
 
 /**
  * Utility class for secure AES encryption/decryption using PBKDF2 and CBC mode.
  */
-public class CryptoUtils {
+public class CryptoHelper {
 
     private static final int SALT_LENGTH = 16;
     private static final int IV_LENGTH = 16;

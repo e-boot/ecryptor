@@ -2,7 +2,7 @@ package com.eboot.encryptor.utils;
 
 import java.nio.file.Path;
 
-public class ExtensionUtils {
+public class ExtensionHelper {
 
     public static String extractExtension(Path path) {
         String name = path.getFileName().toString();
