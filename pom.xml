@@ -8,6 +8,16 @@
   <artifactId>file-encryptor</artifactId>
   <version>1.0</version>
 
+  <dependencies>
+    <!-- JUnit 5 API and Engine for running tests -->
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter</artifactId>
+      <version>5.10.0</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+
   <build>
     <plugins>
       <plugin>
