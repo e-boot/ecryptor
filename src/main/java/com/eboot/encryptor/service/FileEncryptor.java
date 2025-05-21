@@ -21,7 +21,7 @@ public class FileEncryptor {
         String extension = ExtensionHelper.extractExtension(inputFile);
         byte[] payload = PayloadBuilder.buildPayload(extension, encryptedBytes);
 
-        Path outputFile = ExtensionHelper.getEncryptedPath(inputFile, ENCRYPTED_EXTENSION);
+        Path outputFile = ExtensionHelper.getEncryptedPath(inputFile);
         FileHelper.writeBytes(outputFile, payload);
         FileHelper.deleteFile(inputFile);
     }
@@ -37,7 +37,7 @@ public class FileEncryptor {
         byte[] encryptedBytes = PayloadBuilder.extractContent(payload);
 
         byte[] decryptedBytes = CryptoHelper.decrypt(encryptedBytes, password);
-        Path outputFile = ExtensionHelper.getDecryptedPath(encryptedFile, extension, ENCRYPTED_EXTENSION);
+        Path outputFile = ExtensionHelper.getDecryptedPath(encryptedFile, extension);
 
         FileHelper.writeBytes(outputFile, decryptedBytes);
         FileHelper.deleteFile(encryptedFile);

@@ -11,7 +11,7 @@ public final class Constants {
     public static final int ITERATIONS = 65536;
 
 
-    public static final String ENCRYPTED_EXTENSION = ".encrypted";
+    public static final String ENCRYPTED_EXTENSION = ".enc";
 
 public static class CipherConfig{
     public static final String ALGORITHM = "AES/CBC/PKCS5Padding";
