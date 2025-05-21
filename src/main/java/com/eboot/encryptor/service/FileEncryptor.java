@@ -4,12 +4,15 @@ import com.eboot.encryptor.utils.CryptoHelper;
 import com.eboot.encryptor.utils.ExtensionHelper;
 import com.eboot.encryptor.utils.FileHelper;
 import com.eboot.encryptor.utils.PayloadBuilder;
-
 import java.nio.file.Path;
+
+import com.eboot.encryptor.utils.Constants.*;
+
+import static com.eboot.encryptor.utils.Constants.ENCRYPTED_EXTENSION;
 
 public class FileEncryptor {
 
-    private static final String ENCRYPTED_EXTENSION = ".enc";
+
 
     public void encrypt(Path inputFile, String password) throws Exception {
         byte[] originalBytes = FileHelper.readBytes(inputFile);
@@ -22,6 +25,7 @@ public class FileEncryptor {
         FileHelper.writeBytes(outputFile, payload);
         FileHelper.deleteFile(inputFile);
     }
+
 
     public void decrypt(Path encryptedFile, String password) throws Exception {
         if (!encryptedFile.toString().endsWith(ENCRYPTED_EXTENSION)) {
