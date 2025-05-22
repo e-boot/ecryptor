@@ -6,8 +6,6 @@ import com.eboot.encryptor.utils.FileHelper;
 import com.eboot.encryptor.utils.PayloadBuilder;
 import java.nio.file.Path;
 
-import com.eboot.encryptor.utils.Constants.*;
-
 import static com.eboot.encryptor.utils.Constants.ENCRYPTED_EXTENSION;
 
 public class FileEncryptor {
