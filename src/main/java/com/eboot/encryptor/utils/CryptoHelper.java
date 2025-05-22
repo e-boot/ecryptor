@@ -6,6 +6,8 @@ import javax.crypto.spec.PBEKeySpec;
 import javax.crypto.spec.SecretKeySpec;
 import java.nio.ByteBuffer;
 import java.security.*;
+import java.util.Arrays;
+
 import static com.eboot.encryptor.utils.Constants.*;
 import static com.eboot.encryptor.utils.Constants.CipherConfig.*;
 
@@ -27,21 +29,22 @@ public class CryptoHelper {
         try{
             byte[] salt = generateRandomBytes(SALT_LENGTH);
             byte[] iv = generateRandomBytes(IV_LENGTH);
+
             SecretKey secretKey = deriveKey(password, salt);
 
             Cipher cipher = Cipher.getInstance(ALGORITHM);
             cipher.init(Cipher.ENCRYPT_MODE, secretKey, new IvParameterSpec(iv));
+
             byte[] encryptedData = cipher.doFinal(data);
 
-        return ByteBuffer.allocate(salt.length + iv.length + encryptedData.length)
-                .put(salt)
-                .put(iv)
-                .put(encryptedData)
-                .array();
+            ByteBuffer buffer = ByteBuffer.allocate(salt.length + iv.length + encryptedData.length);
+                buffer.put(salt);
+                buffer.put(iv);
+                buffer.put(encryptedData);
+                return buffer.array();
 
-        } catch (Exception e) {
-            System.err.println("Encryption failed: " + e.getMessage());
-            throw new Exception("Encryption failed", e);
+        } catch (GeneralSecurityException e) {
+            throw new RuntimeException("Encryption failed", e);
         }
     }
 
@@ -72,27 +75,36 @@ public class CryptoHelper {
             Cipher cipher = Cipher.getInstance(ALGORITHM);
             cipher.init(Cipher.DECRYPT_MODE, secretKey, new IvParameterSpec(iv));
             return cipher.doFinal(ciphertext);
+        } catch (BadPaddingException | IllegalBlockSizeException  e) {
+            throw new Exception("Decryption failed: Wrong password or corrupted file. ", e);
         } catch (Exception e) {
-            System.err.println("Decryption failed: " + e.getMessage());
-            throw new Exception("Decryption failed ", e);
+            throw new Exception("Decryption failed due to unexpected error.",e);
         }
     }
 
     private static SecretKey deriveKey(String password, byte[] salt) throws Exception {
+        char[] passwordCharts = password.toCharArray();
         try {
-            PBEKeySpec spec = new PBEKeySpec(password.toCharArray(), salt, ITERATIONS, KEY_LENGTH);
+            PBEKeySpec spec = new PBEKeySpec(passwordCharts, salt, ITERATIONS, KEY_LENGTH);
             SecretKeyFactory factory = SecretKeyFactory.getInstance(KEY_DERIVATION);
             byte[] keyBytes = factory.generateSecret(spec).getEncoded();
             return new SecretKeySpec(keyBytes, "AES");
-        } catch (Exception e) {
-            System.err.println("Key derivation failed: " + e.getMessage());
-            throw new Exception("Key derivation failed", e);
+        } catch (GeneralSecurityException e) {
+            throw new RuntimeException("Key derivation failed", e);
+        }finally {
+            Arrays.fill(passwordCharts, '\0'); // wipe password charts from memory
         }
     }
 
-    private static byte[] generateRandomBytes(int length) throws NoSuchAlgorithmException {
+    private static byte[] generateRandomBytes(int length) {
         byte[] bytes = new byte[length];
-        SecureRandom.getInstanceStrong().nextBytes(bytes);
+        SecureRandom random;
+        try {
+            random = SecureRandom.getInstanceStrong();
+        } catch (NoSuchAlgorithmException e) {
+            random = new SecureRandom();
+        }
+        random.nextBytes(bytes);
         return bytes;
     }
 }

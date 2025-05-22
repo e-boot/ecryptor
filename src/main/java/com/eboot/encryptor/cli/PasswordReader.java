@@ -11,10 +11,7 @@ public class PasswordReader {
     /**
      * Prompts the user for input using a secure password input (no echo) if available.
      * Falls back to standard input if the console is not available (e.g., in IDEs).
-     *
-     * @param message The prompt message to display to the user.
-     * @return The password (or input) entered by the user.
-     */
+*/
     public static String prompt(String message) {
         Console console = System.console();
         if (console != null) {
@@ -25,19 +22,17 @@ public class PasswordReader {
             return new Scanner(System.in).nextLine();
         }
     }
-    /**
-     * Prompts the user to enter and confirm a password.
-     * If both entries match, the password is returned; otherwise, returns null.
-     *
-     * @return The confirmed password or null if passwords don't match.
-     */
+
     public static String readAndConfirmPassword() {
-        String pwd1 = prompt("Enter password: ");
-        String pwd2 = prompt("Confirm password: ");
-        if (!pwd1.equals(pwd2)) {
-            System.out.println("Passwords don't match.");
-            return null;
+
+        for(int i = 0; i< 3; i++ ) {
+            String pwd1 = prompt("Enter password: ");
+            String pwd2 = prompt("Confirm password: ");
+            if (pwd1.equals(pwd2)) return pwd1;
+            System.out.println("Passwords don't match.Try again");
         }
-        return pwd1;
+        System.out.println("Too many attempts.Aborting task");
+        return null;
+
     }
 }
