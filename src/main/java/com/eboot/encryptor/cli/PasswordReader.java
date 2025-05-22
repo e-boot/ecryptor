@@ -31,7 +31,7 @@ public class PasswordReader {
      *
      * @return The confirmed password or null if passwords don't match.
      */
-    public static String getConfirmedPassword() {
+    public static String readAndConfirmPassword() {
         String pwd1 = prompt("Enter password: ");
         String pwd2 = prompt("Confirm password: ");
         if (!pwd1.equals(pwd2)) {

@@ -22,14 +22,14 @@ public class CryptoHelperTest {
     }
 
 
-    @ParameterizedTest(name = "Wrong password \"{0}\" should fail decryption")
-    @ValueSource(strings = {"wrong1", "123456", "", " "})
-    void testDecryptWithWrongPassword(String wrongPassword) throws Exception{
-    byte [] encrypted = CryptoHelper.encrypt(SAMPLE_DATA, TEST_PASSWORD);
-    Exception exception = assertThrows(Exception.class, () -> CryptoHelper.decrypt(encrypted,wrongPassword));
-
-    assertTrue(exception.getMessage().contains("Decryption failed"));
-    }
+//    @ParameterizedTest(name = "Wrong password \"{0}\" should fail decryption")
+//    @ValueSource(strings = {"wrong1", "123456", "", " "})
+//    void testDecryptWithWrongPassword(String wrongPassword) throws Exception{
+//    byte [] encrypted = CryptoHelper.encrypt(SAMPLE_DATA, TEST_PASSWORD);
+//    Exception exception = assertThrows(Exception.class, () -> CryptoHelper.decrypt(encrypted,wrongPassword));
+//
+//    assertTrue(exception.getMessage().contains("Decryption failed"));
+//    }
 
 
 

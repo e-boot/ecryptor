@@ -7,6 +7,7 @@ import org.junit.jupiter.api.io.TempDir;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
@@ -76,6 +77,39 @@ class FileEncryptorTest {
 
         assertTrue(exception.getMessage().toLowerCase().contains("decryption failed"));
 
+    }
 
+    @Test
+    @DisplayName("Decrypting a tampered encrypted file should fail")
+    void tamperedEncryptedFile_shouldFail() throws Exception {
+        String content = "Sensitive data";
+        Path originalFile = tempDir.resolve("data.txt");
+        Files.writeString(originalFile, content);
+
+        encryptor.encrypt(originalFile, "pass123");
+        Path encryptedFile = tempDir.resolve("data.enc");
+
+        // Tamper with the encrypted file
+        byte[] tampered = Files.readAllBytes(encryptedFile);
+        tampered[10] = (byte) (tampered[10] ^ 0xFF); // flip a byte
+        Files.write(encryptedFile, tampered);
+
+        assertThrows(Exception.class, () -> encryptor.decrypt(encryptedFile, "pass123"));
+    }
+
+    @Test
+    @DisplayName("Encrypting a nonexistent file should throw IOException")
+    void encryptingNonexistentFile_shouldThrow() {
+        Path fakeFile = tempDir.resolve("doesnotexist.txt");
+
+        assertThrows(IOException.class, () -> encryptor.encrypt(fakeFile, "password"));
+    }
+
+    @Test
+    @DisplayName("Decrypting a nonexistent file should throw IOException")
+    void decryptingNonexistentFile_shouldThrow() {
+        Path fakeFile = tempDir.resolve("doesnotexist.enc");
+
+        assertThrows(IOException.class, () -> encryptor.decrypt(fakeFile, "password"));
     }
 }
