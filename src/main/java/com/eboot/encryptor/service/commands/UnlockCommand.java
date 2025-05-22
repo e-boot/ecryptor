@@ -2,6 +2,7 @@ package com.eboot.encryptor.service.commands;
 
 import com.eboot.encryptor.cli.PasswordReader;
 import com.eboot.encryptor.service.FileEncryptor;
+import com.eboot.encryptor.utils.Messages;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -31,12 +32,12 @@ public class UnlockCommand implements Command{
         Path encryptedFile =Path.of(args[1]);
 
         if(!Files.exists(encryptedFile)){
-            System.out.println("File doesn't exist: " + encryptedFile);
+            System.out.println(Messages.FIle_DO_NOT_EXIST  + encryptedFile);
             return;
         }
 
         String password = PasswordReader.prompt("Enter password: ");
         encryptor.decrypt(encryptedFile, password);
-        System.out.println("✅ File successfully unlocked: " + encryptedFile.getFileName());
+        System.out.println( Messages.FILE_UNLOCKED + encryptedFile.getFileName());
     }
 }

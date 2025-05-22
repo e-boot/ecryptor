@@ -1,5 +1,7 @@
 package com.eboot.encryptor.cli;
 
+import com.eboot.encryptor.utils.Messages;
+
 import java.io.Console;
 import java.util.Scanner;
 /**
@@ -26,12 +28,12 @@ public class PasswordReader {
     public static String readAndConfirmPassword() {
 
         for(int i = 0; i< 3; i++ ) {
-            String pwd1 = prompt("Enter password: ");
-            String pwd2 = prompt("Confirm password: ");
+            String pwd1 = prompt(Messages.ENTER_PASSWORD);
+            String pwd2 = prompt(Messages.CONFIRM_PASSWORD);
             if (pwd1.equals(pwd2)) return pwd1;
-            System.out.println("Passwords don't match.Try again");
+            System.out.println(Messages.PASSWORD_DONT_MATCH);
         }
-        System.out.println("Too many attempts.Aborting task");
+        System.out.println(Messages.TOO_MANY_ATTEMPTS);
         return null;
 
     }

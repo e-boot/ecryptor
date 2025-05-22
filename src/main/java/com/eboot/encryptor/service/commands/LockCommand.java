@@ -2,6 +2,7 @@ package com.eboot.encryptor.service.commands;
 
 import com.eboot.encryptor.cli.PasswordReader;
 import com.eboot.encryptor.service.FileEncryptor;
+import com.eboot.encryptor.utils.Messages;
 
 import java.nio.file.Path;
 
@@ -29,6 +30,6 @@ public class LockCommand implements Command {
         Path input =Path.of(args[1]);
         String password = PasswordReader.readAndConfirmPassword();
         encryptor.encrypt(input, password);
-        System.out.println("File encrypted with success!");
+        System.out.println(Messages.FILE_LOCKED);
     }
 }

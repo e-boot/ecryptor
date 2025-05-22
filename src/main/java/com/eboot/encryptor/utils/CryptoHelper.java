@@ -44,7 +44,7 @@ public class CryptoHelper {
                 return buffer.array();
 
         } catch (GeneralSecurityException e) {
-            throw new RuntimeException("Encryption failed", e);
+            throw new RuntimeException(Messages.ENCRYPTION_FAILED, e);
         }
     }
 
@@ -61,7 +61,7 @@ public class CryptoHelper {
             ByteBuffer buffer = ByteBuffer.wrap(encryptedData);
 
             if(encryptedData.length < SALT_LENGTH + IV_LENGTH){
-                throw new IllegalArgumentException("Encrypted data is too short to contain salt and IV");
+                throw new IllegalArgumentException(Messages.DATA_TOO_SHORT);
             }
 
             byte[] salt = new byte[SALT_LENGTH];
@@ -76,9 +76,7 @@ public class CryptoHelper {
             cipher.init(Cipher.DECRYPT_MODE, secretKey, new IvParameterSpec(iv));
             return cipher.doFinal(ciphertext);
         } catch (BadPaddingException | IllegalBlockSizeException  e) {
-            throw new Exception("Decryption failed: Wrong password or corrupted file. ", e);
-        } catch (Exception e) {
-            throw new Exception("Decryption failed due to unexpected error.",e);
+            throw new Exception(Messages.DECRYPTION_FAILED, e);
         }
     }
 
@@ -90,7 +88,7 @@ public class CryptoHelper {
             byte[] keyBytes = factory.generateSecret(spec).getEncoded();
             return new SecretKeySpec(keyBytes, "AES");
         } catch (GeneralSecurityException e) {
-            throw new RuntimeException("Key derivation failed", e);
+            throw new RuntimeException(Messages.KEY_FAILED, e);
         }finally {
             Arrays.fill(passwordCharts, '\0'); // wipe password charts from memory
         }

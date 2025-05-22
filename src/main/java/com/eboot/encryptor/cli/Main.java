@@ -1,6 +1,6 @@
 package com.eboot.encryptor.cli;
 
-import com.eboot.encryptor.service.commands.CommandHandler;
+import com.eboot.encryptor.service.CommandHandler;
 
 public class Main {
 

@@ -21,7 +21,7 @@ public class ExtensionHelper {
      * @return The file extension, e.g., ".txt"
      */
     public static String extractExtension(Path path) {
-        Objects.requireNonNull(path, "Path must not be null");
+        Objects.requireNonNull(path, "Path " +Messages.NOT_NULL);
 
         String name = path.getFileName().toString();
         int index = name.lastIndexOf('.');
@@ -36,7 +36,7 @@ public class ExtensionHelper {
      * @return Path with encrypted extension.
      */
     public static Path getEncryptedPath(Path inputFile) {
-        Objects.requireNonNull(inputFile, "Input file must not be null");
+        Objects.requireNonNull(inputFile, "Input " + Messages.NOT_NULL);
 
         String baseName = stripExtension(inputFile.getFileName().toString());
         return inputFile.resolveSibling(baseName + ENCRYPTED_EXTENSION);
@@ -51,8 +51,8 @@ public class ExtensionHelper {
      * @return Path with the original extension.
      */
     public static Path getDecryptedPath(Path encryptedFile, String originalExtension ) {
-        Objects.requireNonNull(encryptedFile, "Encrypted file must not be null");
-        Objects.requireNonNull(originalExtension, "Original extension must not be null");
+        Objects.requireNonNull(encryptedFile, "Encrypted " + Messages.NOT_NULL);
+        Objects.requireNonNull(originalExtension, "Original " + Messages.NOT_NULL);
 
         String name = encryptedFile.getFileName().toString();
         String baseName = name.substring(0, name.length() - ENCRYPTED_EXTENSION.length());

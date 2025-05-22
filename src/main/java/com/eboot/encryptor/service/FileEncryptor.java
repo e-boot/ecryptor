@@ -1,9 +1,7 @@
 package com.eboot.encryptor.service;
 
-import com.eboot.encryptor.utils.CryptoHelper;
-import com.eboot.encryptor.utils.ExtensionHelper;
-import com.eboot.encryptor.utils.FileHelper;
-import com.eboot.encryptor.utils.PayloadBuilder;
+import com.eboot.encryptor.utils.*;
+
 import java.nio.file.Path;
 
 import static com.eboot.encryptor.utils.Constants.ENCRYPTED_EXTENSION;
@@ -27,7 +25,7 @@ public class FileEncryptor {
 
     public void decrypt(Path encryptedFile, String password) throws Exception {
         if (!encryptedFile.toString().endsWith(ENCRYPTED_EXTENSION)) {
-            throw new IllegalArgumentException("File must end with " + ENCRYPTED_EXTENSION);
+            throw new IllegalArgumentException(Messages.WRONG_EXTENSION);
         }
 
         byte[] payload = FileHelper.readBytes(encryptedFile);
