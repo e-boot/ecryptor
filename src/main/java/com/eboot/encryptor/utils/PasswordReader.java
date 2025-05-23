@@ -8,22 +8,30 @@ import java.util.Scanner;
  */
 public class PasswordReader {
 
+    private final Console console;
+    private final Scanner scanner;
+
+
+    public PasswordReader(Console console, Scanner scanner){
+        this.console = console;
+        this.scanner = scanner;
+    }
     /**
      * Prompts the user for input using a secure password input (no echo) if available.
      * Falls back to standard input if the console is not available (e.g., in IDEs).
 */
-    public static String prompt(String message) {
-        Console console = System.console();
+    public  String prompt(String message) {
+
         if (console != null) {
             char[] pwd = console.readPassword(message);
             return new String(pwd).trim();
         } else {
             System.out.print(message);
-            return new Scanner(System.in).nextLine();
+            return scanner.nextLine();
         }
     }
 
-    public static String readAndConfirmPassword() {
+    public String readAndConfirmPassword() {
 
         for(int i = 0; i< 3; i++ ) {
             String pwd1 = prompt(Messages.ENTER_PASSWORD);

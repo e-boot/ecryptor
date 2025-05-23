@@ -11,8 +11,16 @@ import com.eboot.encryptor.utils.Messages;
 public class CommandHandler {
 
 
-    private final CommandRegistry registry = new CommandRegistry();
 
+    private final CommandRegistry registry;
+
+    public CommandHandler(){
+        this.registry = new CommandRegistry();
+    }
+
+    public CommandHandler(CommandRegistry registry){
+        this.registry = registry;
+    }
 
     /**
      * Parses and executes the appropriate command based on CLI input.

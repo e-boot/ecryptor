@@ -5,10 +5,12 @@ import com.eboot.encryptor.core.FileEncryptor;
 import com.eboot.encryptor.utils.Messages;
 
 import java.nio.file.Path;
+import java.util.Scanner;
 
 public class LockCommand implements Command {
 
     private final FileEncryptor encryptor = new FileEncryptor();
+    private final PasswordReader pwdReader = new PasswordReader(System.console(),new Scanner(System.in));
 
     @Override
     public String name() {
@@ -28,7 +30,7 @@ public class LockCommand implements Command {
         }
 
         Path input =Path.of(args[1]);
-        String password = PasswordReader.readAndConfirmPassword();
+        String password = pwdReader.readAndConfirmPassword();
         encryptor.encrypt(input, password);
     }
 }

@@ -6,10 +6,12 @@ import com.eboot.encryptor.utils.Messages;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.Scanner;
 
 public class UnlockCommand implements Command{
 
-    FileEncryptor encryptor = new FileEncryptor();
+    private FileEncryptor encryptor = new FileEncryptor();
+    private PasswordReader pwdReader = new PasswordReader(System.console(), new Scanner(System.in));
 
     @Override
     public String name() {
@@ -36,7 +38,7 @@ public class UnlockCommand implements Command{
             return;
         }
 
-        String password = PasswordReader.prompt("Enter password: ");
+        String password = pwdReader.prompt("Enter password: ");
         encryptor.decrypt(encryptedFile, password);
     }
 }

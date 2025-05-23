@@ -8,7 +8,16 @@
   <artifactId>file-encryptor</artifactId>
   <version>1.0</version>
 
+
+
+
   <dependencies>
+    <dependency>
+      <groupId>org.mockito</groupId>
+      <artifactId>mockito-core</artifactId>
+      <version>5.4.0</version>
+      <scope>test</scope>
+    </dependency>
     <!-- JUnit 5 API and Engine for running tests -->
     <dependency>
       <groupId>org.junit.jupiter</groupId>
