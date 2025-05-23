@@ -8,19 +8,24 @@ A simple yet secure command-line tool to encrypt and decrypt files using AES-256
 Prerequisites: java 8, maven;
 
 
-
-Download this project then:
 ```bash
+cd ecryptor/
+mvn clean package
+chmod + x install.sh
+./install.sh
+```
 
+---
+## Uninstall
 
+```bash
+sudo rm /usr/local/bin/ecryptor
+sudo rm -r /usr/local/lib/ecryptor
 ```
 
 
+### Commands Usage:
 
-
-## 🚀 How to Use
-
-### Commands Usage
 ```bash
  ecryptor help
 ```
