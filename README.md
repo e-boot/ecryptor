@@ -9,6 +9,7 @@ Prerequisites: java 8, maven;
 
 
 ```bash
+git clone https://github.com/e-boot/ecryptor.git
 cd ecryptor/
 mvn clean package
 chmod + x install.sh
