@@ -1,13 +1,10 @@
-package com.eboot.encryptor.core;
-
-import com.eboot.encryptor.utils.Messages;
-import com.eboot.encryptor.utils.Constants.*;
+package com.eboot.ecryptor.core;
 
 import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
 
-import static com.eboot.encryptor.utils.Messages.EXT_LENGTH_BYTE_SIZE;
-import static com.eboot.encryptor.utils.Messages.MAX_EXTENSION_LENGTH;
+import static com.eboot.ecryptor.utils.Messages.EXT_LENGTH_BYTE_SIZE;
+import static com.eboot.ecryptor.utils.Messages.MAX_EXTENSION_LENGTH;
 
 public class PayloadBuilder {
 

@@ -1,8 +1,8 @@
-package com.eboot.encryptor.core;
+package com.eboot.ecryptor.core;
 
 
-import com.eboot.encryptor.utils.ExtensionHelper;
-import com.eboot.encryptor.utils.Messages;
+import com.eboot.ecryptor.utils.ExtensionHelper;
+import com.eboot.ecryptor.utils.Messages;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;

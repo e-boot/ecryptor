@@ -1,8 +1,7 @@
-package com.eboot.encryptor.service.commands;
+package com.eboot.ecryptor.service.commands;
 
-import com.eboot.encryptor.utils.PasswordReader;
-import com.eboot.encryptor.core.FileEncryptor;
-import com.eboot.encryptor.utils.Messages;
+import com.eboot.ecryptor.utils.PasswordReader;
+import com.eboot.ecryptor.core.FileEncryptor;
 
 import java.nio.file.Path;
 import java.util.Scanner;

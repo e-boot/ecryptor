@@ -1,6 +1,6 @@
-package com.eboot.encryptor.utils;
+package com.eboot.ecryptor.utils;
 
-import static com.eboot.encryptor.utils.Constants.ENCRYPTED_EXTENSION;
+import static com.eboot.ecryptor.utils.Constants.ENCRYPTED_EXTENSION;
 
 public class Messages {
 

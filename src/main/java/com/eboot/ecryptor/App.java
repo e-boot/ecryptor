@@ -1,6 +1,6 @@
-package com.eboot.encryptor;
+package com.eboot.ecryptor;
 
-import com.eboot.encryptor.service.CommandHandler;
+import com.eboot.ecryptor.service.CommandHandler;
 
 public class App {
 

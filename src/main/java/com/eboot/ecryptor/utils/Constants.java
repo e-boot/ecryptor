@@ -1,4 +1,4 @@
-package com.eboot.encryptor.utils;
+package com.eboot.ecryptor.utils;
 
 
 public final class Constants {

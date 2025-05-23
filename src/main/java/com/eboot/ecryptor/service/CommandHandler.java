@@ -1,9 +1,9 @@
-package com.eboot.encryptor.service;
+package com.eboot.ecryptor.service;
 
 
-import com.eboot.encryptor.service.commands.Command;
-import com.eboot.encryptor.service.commands.CommandRegistry;
-import com.eboot.encryptor.utils.Messages;
+import com.eboot.ecryptor.service.commands.Command;
+import com.eboot.ecryptor.service.commands.CommandRegistry;
+import com.eboot.ecryptor.utils.Messages;
 
 /**
  * Handles CLI command parsing and execution.

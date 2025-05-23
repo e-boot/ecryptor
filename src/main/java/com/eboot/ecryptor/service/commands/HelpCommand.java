@@ -1,4 +1,4 @@
-package com.eboot.encryptor.service.commands;
+package com.eboot.ecryptor.service.commands;
 
 public class HelpCommand implements Command {
 

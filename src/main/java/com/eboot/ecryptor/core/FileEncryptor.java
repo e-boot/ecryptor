@@ -1,11 +1,11 @@
-package com.eboot.encryptor.core;
+package com.eboot.ecryptor.core;
 
-import com.eboot.encryptor.utils.*;
+import com.eboot.ecryptor.utils.*;
 
 import java.io.IOException;
 import java.nio.file.Path;
 
-import static com.eboot.encryptor.utils.Constants.ENCRYPTED_EXTENSION;
+import static com.eboot.ecryptor.utils.Constants.ENCRYPTED_EXTENSION;
 
 public class FileEncryptor {
 

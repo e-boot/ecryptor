@@ -1,8 +1,8 @@
-package com.eboot.encryptor.utils;
+package com.eboot.ecryptor.utils;
 
 import java.nio.file.Path;
 import java.util.Objects;
-import static com.eboot.encryptor.utils.Constants.ENCRYPTED_EXTENSION;
+import static com.eboot.ecryptor.utils.Constants.ENCRYPTED_EXTENSION;
 
 /**
  * Utility class for handling file name extensions

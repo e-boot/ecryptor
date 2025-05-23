@@ -1,4 +1,4 @@
-package com.eboot.encryptor.utils;
+package com.eboot.ecryptor.utils;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;

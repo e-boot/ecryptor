@@ -1,4 +1,4 @@
-package com.eboot.encryptor.core;
+package com.eboot.ecryptor.core;
 import static  org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.DisplayName;

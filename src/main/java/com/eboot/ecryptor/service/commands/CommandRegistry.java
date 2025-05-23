@@ -1,4 +1,4 @@
-package com.eboot.encryptor.service.commands;
+package com.eboot.ecryptor.service.commands;
 
 import java.util.HashMap;
 import java.util.Map;

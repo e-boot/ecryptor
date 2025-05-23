@@ -1,6 +1,6 @@
-package com.eboot.encryptor.core;
+package com.eboot.ecryptor.core;
 
-import com.eboot.encryptor.utils.Messages;
+import com.eboot.ecryptor.utils.Messages;
 
 import javax.crypto.*;
 import javax.crypto.spec.IvParameterSpec;
@@ -10,8 +10,8 @@ import java.nio.ByteBuffer;
 import java.security.*;
 import java.util.Arrays;
 
-import static com.eboot.encryptor.utils.Constants.*;
-import static com.eboot.encryptor.utils.Constants.CipherConfig.*;
+import static com.eboot.ecryptor.utils.Constants.*;
+import static com.eboot.ecryptor.utils.Constants.CipherConfig.*;
 
 /**
  * Utility class for secure AES encryption/decryption using PBKDF2 and CBC mode.
