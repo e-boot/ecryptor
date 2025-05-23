@@ -20,7 +20,9 @@ public class FileHelper {
      * @throws IOException If an I/O error occurs.
      */
     public static byte[] readBytes(Path path) throws IOException {
-        Objects.requireNonNull(path,"Path must not be null");
+        Objects.requireNonNull(path, "Path " + Messages.NOT_NULL);
+        if (!Files.exists(path)) throw new IOException(Messages.FIle_DO_NOT_EXIST + path);
+        if(!Files.isReadable(path)) throw  new IOException("File is not readable : " +path);
         return Files.readAllBytes(path);
     }
 
@@ -34,8 +36,8 @@ public class FileHelper {
      * @throws IOException If an I/O error occurs.
      */
     public static void writeBytes(Path path, byte[] data) throws IOException {
-        Objects.requireNonNull(path,"Path must not be null");
-        Objects.requireNonNull(data,"Data must not be null");
+        Objects.requireNonNull(path,"Path " + Messages.NOT_NULL);
+        Objects.requireNonNull(data,"Data " + Messages.NOT_NULL);
         Files.write(path, data);
     }
 
@@ -47,7 +49,10 @@ public class FileHelper {
      * @throws IOException If an I/O error occurs.
      */
     public static void deleteFile(Path path) throws IOException {
-        Objects.requireNonNull(path,"Path must not be null");
+        if(!Files.exists(path)){
+
+        }
+        Objects.requireNonNull(path,"Path " + Messages.NOT_NULL);
         Files.delete(path);
     }
 }

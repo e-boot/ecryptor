@@ -1,6 +1,8 @@
 package com.eboot.encryptor.core;
 
 
+import com.eboot.encryptor.utils.ExtensionHelper;
+import com.eboot.encryptor.utils.Messages;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
@@ -53,18 +55,17 @@ class FileEncryptorTest {
         Files.writeString(originalFile, originalContent);
 
         encryptor.encrypt(originalFile, password);
-        Path encryptedFile = tempDir.resolve("secure.enc");
 
+        Path encryptedFile = ExtensionHelper.getEncryptedPath(originalFile);
         encryptor.decrypt(encryptedFile, password);
-        Path decryptedFile = tempDir.resolve("secure.txt");
-
+        Path decryptedFile = ExtensionHelper.getDecryptedPath(encryptedFile,ExtensionHelper.extractExtension(originalFile));
         assertEquals(originalContent, Files.readString(decryptedFile));
     }
 
     @Test
     @DisplayName("Decryption with wrong password should fail")
     void decryptWithWrongPasswordThrows() throws Exception{
-        String content = "Secret suff";
+        String content = "Secret stuff";
         Path originalFile = tempDir.resolve("secret.txt");
         Files.writeString(originalFile,content);
 
@@ -75,7 +76,7 @@ class FileEncryptorTest {
                 -> encryptor.decrypt(encryptedFile, "wrong-password")
         );
 
-        assertTrue(exception.getMessage().toLowerCase().contains("decryption failed"));
+        assertTrue(exception.getMessage().contains(Messages.DECRYPTION_FAILED));
 
     }
 

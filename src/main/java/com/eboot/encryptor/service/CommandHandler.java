@@ -5,26 +5,37 @@ import com.eboot.encryptor.service.commands.Command;
 import com.eboot.encryptor.service.commands.CommandRegistry;
 import com.eboot.encryptor.utils.Messages;
 
+/**
+ * Handles CLI command parsing and execution.
+ */
 public class CommandHandler {
+
 
     private final CommandRegistry registry = new CommandRegistry();
 
 
+    /**
+     * Parses and executes the appropriate command based on CLI input.
+     *
+     * @param args Command-line arguments
+     * @throws Exception if a command fails to execute
+     */
     public void handle(String[] args) throws Exception {
         if(args.length == 0){
             System.out.println(Messages.NO_COMMAND_PROVIDED);
         return;
         }
 
-        String cmdName = args[0];
-        Command cmd = registry.getCommand(cmdName);
+        String commandName = args[0];
+        Command command = registry.getCommand(commandName);
 
-        if(cmd == null){
-            System.err.println(Messages.UNKNOWN_COMMAND +cmdName);
+        if(command == null){
+            System.err.println(Messages.UNKNOWN_COMMAND + " " + commandName);
+            System.out.println();
             registry.getCommand("help").execute(new String[0]);
             return;
         }
-        cmd.execute(args);
+        command.execute(args);
 
     }
 

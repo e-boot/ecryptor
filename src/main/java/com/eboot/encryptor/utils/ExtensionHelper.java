@@ -4,58 +4,55 @@ import java.nio.file.Path;
 import java.util.Objects;
 import static com.eboot.encryptor.utils.Constants.ENCRYPTED_EXTENSION;
 
-
 /**
- * Utility class for handling file name extensions and generating
- * paths for encrypted/decrypted files.
+ * Utility class for handling file name extensions
  */
 public class ExtensionHelper {
 
 
-
     /**
-     * Extracts extension of a file.
+     * Extracts the extension of a file.
      * Returns an empty string if no extension exists.
      *
-     * @param path Path to extract the extension from.
+     * @param filePath Path to extract the extension from.
      * @return The file extension, e.g., ".txt"
      */
-    public static String extractExtension(Path path) {
-        Objects.requireNonNull(path, "Path " +Messages.NOT_NULL);
+    public static String extractExtension(Path filePath) {
+        Objects.requireNonNull(filePath, " File Path " + Messages.NOT_NULL);
 
-        String name = path.getFileName().toString();
-        int index = name.lastIndexOf('.');
-        return index == -1 ? "" : name.substring(index);
+        String name = filePath.getFileName().toString();
+        int dotIndex = name.lastIndexOf('.');
+        return dotIndex == -1 ? "" : name.substring(dotIndex);
     }
 
 
     /**
-     * Creates encrypted file path, replace it the original extension with encrypted extension
+     * Generates an encrypted file path by replacing the original extension.
      *
-     * @param inputFile Path of the original input file.
+     * @param originalFile Path of the original input file.
      * @return Path with encrypted extension.
      */
-    public static Path getEncryptedPath(Path inputFile) {
-        Objects.requireNonNull(inputFile, "Input " + Messages.NOT_NULL);
+    public static Path getEncryptedPath(Path originalFile) {
+        Objects.requireNonNull(originalFile, "Original file path " + Messages.NOT_NULL);
 
-        String baseName = stripExtension(inputFile.getFileName().toString());
-        return inputFile.resolveSibling(baseName + ENCRYPTED_EXTENSION);
+        String baseName = stripExtension(originalFile.getFileName().toString());
+        return originalFile.resolveSibling(baseName + ENCRYPTED_EXTENSION);
     }
 
 
     /**
-     * Creates decrypted file path, restoring the original extension.
+     * Generates a decrypted file path by restoring the original extension.
      *
-     * @param encryptedFile Path to the encrypted file.
-     * @param originalExtension Original file extension to restore.
+     * @param encryptedFile      Path to the encrypted file.
+     * @param originalExtension  Original file extension to restore (e.g., ".txt").
      * @return Path with the original extension.
      */
     public static Path getDecryptedPath(Path encryptedFile, String originalExtension ) {
-        Objects.requireNonNull(encryptedFile, "Encrypted " + Messages.NOT_NULL);
-        Objects.requireNonNull(originalExtension, "Original " + Messages.NOT_NULL);
+        Objects.requireNonNull(encryptedFile, "Encrypted file path " + Messages.NOT_NULL);
+        Objects.requireNonNull(originalExtension, "Original extension " + Messages.NOT_NULL);
 
-        String name = encryptedFile.getFileName().toString();
-        String baseName = name.substring(0, name.length() - ENCRYPTED_EXTENSION.length());
+        String fileName = encryptedFile.getFileName().toString();
+        String baseName = fileName.substring(0, fileName.length() - ENCRYPTED_EXTENSION.length());
         return encryptedFile.resolveSibling(baseName + originalExtension);
     }
 

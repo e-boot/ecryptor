@@ -38,6 +38,5 @@ public class UnlockCommand implements Command{
 
         String password = PasswordReader.prompt("Enter password: ");
         encryptor.decrypt(encryptedFile, password);
-        System.out.println( Messages.FILE_UNLOCKED + encryptedFile.getFileName());
     }
 }
