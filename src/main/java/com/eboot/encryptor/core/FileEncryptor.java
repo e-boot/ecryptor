@@ -8,34 +8,38 @@ import static com.eboot.encryptor.utils.Constants.ENCRYPTED_EXTENSION;
 
 public class FileEncryptor {
 
-
-
     public void encrypt(Path inputFile, String password) throws Exception {
-        byte[] originalBytes = FileHelper.readBytes(inputFile);
-        byte[] encryptedBytes = CryptoHelper.encrypt(originalBytes, password);
+        byte[] originalContent = FileHelper.readBytes(inputFile);
+        byte[] encryptedContent = CryptoHelper.encrypt(originalContent, password);
 
-        String extension = ExtensionHelper.extractExtension(inputFile);
-        byte[] payload = PayloadBuilder.buildPayload(extension, encryptedBytes);
+        String originalExtension = ExtensionHelper.extractExtension(inputFile);
+        byte[] payload = PayloadBuilder.buildPayload(originalExtension, encryptedContent);
 
-        Path outputFile = ExtensionHelper.getEncryptedPath(inputFile);
-        FileHelper.writeBytes(outputFile, payload);
+        Path encryptedFile = ExtensionHelper.getEncryptedPath(inputFile);
+        FileHelper.writeBytes(encryptedFile, payload);
         FileHelper.deleteFile(inputFile);
     }
 
 
     public void decrypt(Path encryptedFile, String password) throws Exception {
-        if (!encryptedFile.toString().endsWith(ENCRYPTED_EXTENSION)) {
-            throw new IllegalArgumentException(Messages.WRONG_EXTENSION);
-        }
+       validateEncryptedExtension(encryptedFile);
 
         byte[] payload = FileHelper.readBytes(encryptedFile);
-        String extension = PayloadBuilder.extractExtension(payload);
-        byte[] encryptedBytes = PayloadBuilder.extractContent(payload);
+        String originalExtension = PayloadBuilder.extractExtension(payload);
+        byte[] encryptedContent = PayloadBuilder.extractContent(payload);
 
-        byte[] decryptedBytes = CryptoHelper.decrypt(encryptedBytes, password);
-        Path outputFile = ExtensionHelper.getDecryptedPath(encryptedFile, extension);
+        byte[] decryptedContent = CryptoHelper.decrypt(encryptedContent, password);
 
-        FileHelper.writeBytes(outputFile, decryptedBytes);
+        Path outputFile = ExtensionHelper.getDecryptedPath(encryptedFile, originalExtension);
+
+        FileHelper.writeBytes(outputFile, decryptedContent);
         FileHelper.deleteFile(encryptedFile);
+    }
+
+    // helper function
+    private void validateEncryptedExtension(Path file) {
+    if(!file.toString().endsWith(ENCRYPTED_EXTENSION)){
+        throw new IllegalArgumentException(Messages.WRONG_EXTENSION);
+    }
     }
 }

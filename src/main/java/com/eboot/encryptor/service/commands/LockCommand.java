@@ -30,6 +30,6 @@ public class LockCommand implements Command {
         Path input =Path.of(args[1]);
         String password = PasswordReader.readAndConfirmPassword();
         encryptor.encrypt(input, password);
-        System.out.println(Messages.FILE_LOCKED);
+        System.out.println(Messages.FILE_LOCKED +input );
     }
 }
