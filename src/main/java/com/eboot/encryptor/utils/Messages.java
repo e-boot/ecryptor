@@ -12,13 +12,14 @@ public class Messages {
 
 
     // Commands
-    public static final String NO_COMAND_PROVIDED = "No command provided. Use 'help'";
+    public static final String NO_COMMAND_PROVIDED = "No command provided. Use 'help'";
     public static final String UNKNOWN_COMMAND =" Unknown Command";
 
 
 
-    public static final  String WRONG_EXTENSION = "File must end with " + ENCRYPTED_EXTENSION;
 
+
+    public static final String PAYLOAD_TOO_SHORT = "Payload too short to extract extension length.";
     public static final String ENCRYPTION_FAILED = "Encryption failed.";
     public static final String DATA_TOO_SHORT = "Encrypted data is too short to contain salt and IV";
 
@@ -34,4 +35,11 @@ public class Messages {
     public static final String FILE_LOCKED = "✅ File successfully locked: ";
     public static final String FIle_DO_NOT_EXIST = "The indicated file don't exist: ";
 
+
+    public static final int EXT_LENGTH_BYTE_SIZE = 1;
+    public static final int MAX_EXTENSION_LENGTH = 255;
+
+
+    public static final  String WRONG_EXTENSION = "File must end with " + ENCRYPTED_EXTENSION;
+    public static final String EXTENSION_TOO_LONG = ("Extension too long. Max supported length is " + MAX_EXTENSION_LENGTH + " bytes.");
 }

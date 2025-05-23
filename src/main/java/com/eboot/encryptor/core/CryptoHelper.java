@@ -1,4 +1,6 @@
-package com.eboot.encryptor.utils;
+package com.eboot.encryptor.core;
+
+import com.eboot.encryptor.utils.Messages;
 
 import javax.crypto.*;
 import javax.crypto.spec.IvParameterSpec;

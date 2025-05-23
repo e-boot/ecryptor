@@ -12,7 +12,7 @@ public class CommandHandler {
 
     public void handle(String[] args) throws Exception {
         if(args.length == 0){
-            System.out.println(Messages.NO_COMAND_PROVIDED);
+            System.out.println(Messages.NO_COMMAND_PROVIDED);
         return;
         }
 

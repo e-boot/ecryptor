@@ -1,8 +1,8 @@
-package com.eboot.encryptor.cli;
+package com.eboot.encryptor;
 
 import com.eboot.encryptor.service.CommandHandler;
 
-public class Main {
+public class App {
 
     public static void main(String[] args) {
         try {

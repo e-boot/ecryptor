@@ -1,4 +1,4 @@
-package com.eboot.encryptor.service;
+package com.eboot.encryptor.core;
 
 
 import org.junit.jupiter.api.DisplayName;
