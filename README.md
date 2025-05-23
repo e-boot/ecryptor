@@ -3,30 +3,40 @@ A simple yet secure command-line tool to encrypt and decrypt files using AES-256
 
 
 ---
+## Installation 
+
+Prerequisites: java 8, maven;
+
+
+
+Download this project then:
+```bash
+
+
+```
+
+
 
 
 ## 🚀 How to Use
 
 ### Commands Usage
 ```bash
-java -jar file.encryptor.jar help
+ ecryptor help
 ```
 
  how to encrypt a file:
 
 ```bash
-java -jar file-encryptor.jar lock <path/to/yourfile.txt>
+ecryptor lock <path/to/yourfile.txt>
 ````
  How to decrypt a file:
 
 ```bash
-java -jar file-encryptor.jar unlock <path/to/file.enc>
-```
-how to use:
-```
-java -jar file-encryptor.jar help
+encryptor unlock <path/to/file.enc>
 ```
 
+---
 
 ## Tips & Recommendations
 
@@ -36,6 +46,7 @@ java -jar file-encryptor.jar help
 
    - Backup important data before encryption
 
+---
 
 ###  Technical Notes
     - AES encryption with CBC mode and PKCS5 padding
